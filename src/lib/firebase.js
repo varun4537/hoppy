@@ -18,7 +18,7 @@ const firebaseConfig = {
 };
 
 // Check if config is provided
-const isConfigured = Boolean(
+let isConfigured = Boolean(
     firebaseConfig.apiKey &&
     firebaseConfig.projectId &&
     firebaseConfig.apiKey.length > 0
@@ -46,14 +46,14 @@ if (!isConfigured) {
 }
 
 // Wrapper functions
-export const signInWithPopup = async (_, provider) => {
+export const signInWithPopup = async (_auth, provider) => {
     if (isConfigured) return firebaseSignInWithPopup(auth, provider);
     // Simulate network delay
     await new Promise(r => setTimeout(r, 800));
     throw new Error("Google Login requires valid Firebase configuration in .env");
 };
 
-export const signInAnonymously = async (_) => {
+export const signInAnonymously = async () => {
     if (isConfigured) return firebaseSignInAnonymously(auth);
 
     // Mock Guest Login
@@ -66,14 +66,14 @@ export const signInAnonymously = async (_) => {
     return { user: mockUser };
 };
 
-export const signOut = async (_) => {
+export const signOut = async () => {
     if (isConfigured) return firebaseSignOut(auth);
 
     localStorage.removeItem("mock_user");
     window.dispatchEvent(new CustomEvent("mock-auth-change", { detail: null }));
 };
 
-export const onAuthStateChanged = (_, callback) => {
+export const onAuthStateChanged = (_auth, callback) => {
     if (isConfigured) return firebaseOnAuthStateChanged(auth, callback);
 
     // Initial check

@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "d3-celestial": "^0.7.35",
     "firebase": "^12.9.0",
     "framer-motion": "^12.34.0",
     "react": "^19.2.0",

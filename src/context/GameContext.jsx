@@ -29,6 +29,7 @@ export function GameProvider({ children }) {
         return saved ? JSON.parse(saved) : true;
     });
     const [showConstellations, setShowConstellations] = useState(true);
+    const [selectedConstellation, setSelectedConstellation] = useState(null); // New state
     const [customHops, setCustomHops] = useState(loadCustomHops);
 
     // Auth State
@@ -180,6 +181,19 @@ export function GameProvider({ children }) {
         setScreen("log");
     }, []);
 
+    const goToAbout = useCallback(() => {
+        setScreen("about");
+    }, []);
+
+    const goToConstellations = useCallback(() => {
+        setScreen("constellations");
+    }, []);
+
+    const goToConstellationDetail = useCallback((constellation) => {
+        setSelectedConstellation(constellation);
+        setScreen("constellation-detail");
+    }, []);
+
     const toggleRedMode = useCallback(() => {
         setRedMode((v) => !v);
     }, []);
@@ -262,9 +276,12 @@ export function GameProvider({ children }) {
         goToSelect,
 
         goToBuilder,
-        goToBuilder,
         goToSettings,
         goToLog,
+        goToAbout,
+        goToConstellations,
+        goToConstellationDetail,
+        selectedConstellation,
         // setEquipment, // Old setEquipment, might be redundant
         toggleRedMode,
         toggleConstellations,

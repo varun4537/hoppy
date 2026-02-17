@@ -20,6 +20,11 @@
 - **Red Light Mode**:
   - Full-app dark red theme to preserve your night vision.
   - Persists across sessions.
+- **Constellation Browser**:
+  - Browse deep-sky objects by constellation.
+  - Interactive stick figure visualizations using real star data.
+- **Observing Log**:
+  - Log your observations with date, equipment, and notes.
 - **PWA Support**: Installable as a native-like app on mobile.
 
 ## 🔐 Authentication & Data

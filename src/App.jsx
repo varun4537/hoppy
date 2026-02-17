@@ -13,6 +13,9 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import OnboardingModal from "./components/OnboardingModal";
 import ObservingLog from "./components/ObservingLog";
+import AboutScreen from "./components/AboutScreen";
+import ConstellationList from "./components/ConstellationList";
+import ConstellationDetail from "./components/ConstellationDetail";
 
 function AppContent() {
   const { screen, user, authLoading } = useGame();
@@ -56,8 +59,11 @@ function AppContent() {
       {screen === "hop" && <HopScreen />}
       {screen === "success" && <SuccessScreen />}
       {screen === "builder" && <CustomHopBuilder />}
+      {screen === "constellations" && <ConstellationList />}
+      {screen === "constellation-detail" && <ConstellationDetail />}
       {screen === "settings" && <SettingsScreen />}
       {screen === "log" && <ObservingLog />}
+      {screen === "about" && <AboutScreen />}
     </>
   );
 }

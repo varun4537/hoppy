@@ -6,11 +6,25 @@ import EQUIPMENT from "../data/equipment";
 
 export default function SettingsScreen() {
     const {
-        user, logout, goToSelect,
-        allEquipment, equipmentIndex, setEquipmentIndex,
-        customEquipment, addCustomEquipment, removeCustomEquipment,
-        showFOV, setShowFOV,
-        redMode, toggleRedMode
+        equipment,
+        setEquipment,
+        equipmentList,
+        equipmentIndex,
+        setEquipmentIndex,
+        allEquipment,
+        customEquipment,
+        addCustomEquipment,
+        removeCustomEquipment,
+        addEquipment,
+        removeEquipment,
+        goToSelect,
+        goToAbout,
+        redMode,
+        toggleRedMode,
+        showFOV,
+        setShowFOV,
+        user,
+        logout
     } = useGame();
 
     const [showTerms, setShowTerms] = useState(false);
@@ -71,6 +85,12 @@ export default function SettingsScreen() {
                                 Sign Out
                             </button>
                         </div>
+                        <div className="glass-panel account-panel">
+                            {/* ... */}
+                        </div>
+                        <button className="settings-btn secondary" onClick={goToAbout} style={{ marginTop: "1rem" }}>
+                            ℹ️ About Hoppy
+                        </button>
                     </section>
 
                     {/* Preferences */}

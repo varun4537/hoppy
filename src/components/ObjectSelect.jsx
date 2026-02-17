@@ -29,7 +29,7 @@ const diffLabels = ["", "Easy", "Moderate", "Intermediate", "Challenging", "Expe
 const diffColors = ["", "#44dd88", "#44ccff", "#ffaa44", "#ff6644", "#ff4466"];
 
 export default function ObjectSelect() {
-    const { startHop, redMode, toggleRedMode, goToBuilder, goToSettings, goToLog, customHops, deleteCustomHop, equipment, user, logout, observingLog } = useGame();
+    const { startHop, redMode, toggleRedMode, goToBuilder, goToSettings, goToLog, goToConstellations, customHops, deleteCustomHop, equipment, user, logout, observingLog } = useGame();
     const [search, setSearch] = useState("");
     const [season, setSeason] = useState("All");
     const [sortBy, setSortBy] = useState("difficulty");
@@ -83,6 +83,9 @@ export default function ObjectSelect() {
                         🔭 {equipment.name}
                     </button>
                     <div className="header-actions-row">
+                        <button className="equip-badge" onClick={goToConstellations} title="Browse Constellations" style={{ cursor: "pointer", marginRight: "0.5rem" }}>
+                            🌌 Patterns
+                        </button>
                         <button className="equip-badge" onClick={goToLog} title="View Logbook" style={{ cursor: "pointer" }}>
                             📝 My Log
                         </button>
@@ -128,27 +131,33 @@ export default function ObjectSelect() {
             {/* Object Grid */}
             <div className="card-grid">
                 {/* Create Your Own Hop card */}
-                <motion.button
+                <motion.div
                     className="object-card create-hop-card"
                     onClick={goToBuilder}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ cursor: "pointer" }}
                 >
                     <div className="create-hop-icon">✏️</div>
                     <h2 className="card-name">Create Your Own Hop</h2>
                     <p className="card-constellation">Build a custom star-hopping route</p>
-                </motion.button>
+                </motion.div>
 
                 {/* Custom hops */}
                 {customHopList.map((hop) => (
-                    <motion.button
+                    <motion.div
                         key={hop.id}
                         className="object-card custom-hop-card"
                         onClick={() => startHop(hop.id)}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.35 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{ cursor: "pointer" }}
                     >
                         <div className="card-type">
                             <span className="type-emoji">⭐</span>
@@ -166,13 +175,13 @@ export default function ObjectSelect() {
                                 🗑️
                             </button>
                         </div>
-                    </motion.button>
+                    </motion.div>
                 ))}
 
                 {/* Standard hops */}
                 <AnimatePresence>
                     {hopList.map(({ id, hop, dso }, i) => (
-                        <motion.button
+                        <motion.div
                             key={id}
                             className="object-card"
                             onClick={() => startHop(id)}
@@ -180,7 +189,10 @@ export default function ObjectSelect() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9 }}
                             transition={{ delay: Math.min(i * 0.03, 0.5), duration: 0.35 }}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                             layout
+                            style={{ cursor: "pointer" }}
                         >
                             <div className="card-type">
                                 <span className="type-emoji">{TYPE_EMOJIS[dso.type] || "🌌"}</span>
@@ -216,7 +228,7 @@ export default function ObjectSelect() {
                                     ℹ️
                                 </button>
                             </div>
-                        </motion.button>
+                        </motion.div>
                     ))}
                 </AnimatePresence>
             </div>
